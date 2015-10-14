@@ -1,0 +1,38 @@
+#! /bin/sh
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+bindir="@bindir@"
+pfilesdir="${prefix}/syspfiles"
+
+XSCAT="@prefix@"
+export XSCAT
+
+PATH=`echo ":${PATH}:" | sed "s%:${bindir}:%:%g" | sed 's%::*$%%'`
+PATH="${bindir}${PATH}"
+export PATH
+
+# Use PFILES (if set) to set initial values for locpfiles and syspfiles
+if [ "x${PFILES}" != x ]; then
+  # Not sure this is the best behavior but it is equivalent to headas-setup.
+  syspfiles=`echo ${PFILES} | sed "s%.*;%%"`
+  locpfiles=`echo ${PFILES} | sed -n "s%;.*%%"`
+fi
+
+# Move HOME/pfiles to front of locpfiles and weed out redundancies
+if [ "x${locpfiles}" = x ]; then
+  locpfiles="${HOME}/pfiles"
+else
+  locpfiles=`echo ":${locpfiles}:" | sed "s%:${HOME}/pfiles:%:%g" | sed 's%::*$%%'`
+  locpfiles="${HOME}/pfiles${locpfiles}"
+fi
+
+# Move syspfiles to front of syspfiles and weed out redundancies
+if [ "x${syspfiles}" = x ]; then
+  syspfiles="${pfilesdir}"
+else
+  syspfiles=`echo ":${syspfiles}:" | sed "s%:${pfilesdir}:%:%g" | sed 's%::*$%%'`
+  syspfiles="${pfilesdir}${syspfiles}"
+fi
+
+PFILES="${locpfiles};${syspfiles}"
+export PFILES

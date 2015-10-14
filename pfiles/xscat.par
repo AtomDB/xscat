@@ -1,0 +1,13 @@
+OutputFileName,s,a,"TestZDACAF",,,"Output Event file stem"
+DustModelName,s,a,"ZDACAF",,,"Dust Model Name (see documentation)"
+DustModel,i,a,-1,,,"Dust Model Number (see documentation)"
+Emin,r,a,1.0,,,"Minimum Energy of X-ray to consider (keV)"
+deltaE,r,a,0.5,,,"Delta Energy step of next X-ray to consider (keV)"
+NumberOfEnergies,i,a,3,,,"Number of Energies to calculate"
+ExtractRadius,r,a,10.0,,,"Source Extraction Radius (arcsec)"
+DustPosition,r,a,0.5,0.0,1.0,"Relative Dust Position (obs=0.0; src=1.0)
+Interpolate,b,h,yes,,,"Use faster interpolation when calculating scattering"
+Epsilon,r,a,1e-3,,,"Accuracy to achieve in numerical integration"
+Drude,b,h,no,,,"Use Drude approximation to optical constants (not recommended)"
+clobber,b,h,no,,,"Overwrite existing output file?"
+mode,s,hl,"hl","ql|hl|q|h",,"mode for parameter file"
