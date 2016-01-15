@@ -1,5 +1,5 @@
 #include <math.h>
-#define EPS 1.0e-6
+#define EPS 1.0e-4
 #define JMAX 20
 
 #include "xscat.h"
@@ -19,7 +19,7 @@ double qtrap_dm(struct DUSTMODEL *dm, double a, double b) {
 		if (s == 0.0 && olds == 0.0 && j > 6) return s;
 		olds=s;
 	}
-	message("qtrap_dm","Too many steps in routine qtrap");
+	errmess("qtrap_dm","Too many steps in routine qtrap");
 	return 0.0;
 }
 #undef EPS

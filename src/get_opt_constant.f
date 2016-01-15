@@ -70,22 +70,22 @@ c      if (numopts(slot) .gt. 0) return   ! Only load slot once
 
       filestem='File not set'
       unit = 10
-      if (dusttype .eq. 0)  filestem = 'Drude Approximation'
-      if (dusttype .eq. 1)  filestem = '/inputs/WD01_silicate.dat'
-      if (dusttype .eq. 2)  filestem = '/inputs/WD01_graphite.dat'
-      if (dusttype .eq. 3)  filestem = '/inputs/ZDA04_silicate.dat'
-      if (dusttype .eq. 4)  filestem = '/inputs/ZDA04_amorphcar.dat'
-      if (dusttype .eq. 5)  filestem = '/inputs/ZDA04_graphite.dat'
-      if (dusttype .eq. 6)  filestem = '/inputs/ZDA04_refract.dat'
-      if (dusttype .eq. 7)  filestem = '/inputs/ZDA04_CGS.dat' ! composite
-      if (dusttype .eq. 8)  filestem = '/inputs/ZDA04_CGF.dat' ! composite
-      if (dusttype .eq. 9)  filestem = '/inputs/ZDA04_CGB.dat' ! composite
-      if (dusttype .eq. 10) filestem = '/inputs/ZDA04_CAS.dat' ! composite
-      if (dusttype .eq. 11) filestem = '/inputs/ZDA04_CAF.dat' ! composite
-      if (dusttype .eq. 12) filestem = '/inputs/ZDA04_CAB.dat' ! composite
-      if (dusttype .eq. 13) filestem = '/inputs/ZDA04_CNS.dat' ! composite
-      if (dusttype .eq. 14) filestem = '/inputs/ZDA04_CNF.dat' ! composite
-      if (dusttype .eq. 15) filestem = '/inputs/ZDA04_CNB.dat' ! composite
+      if (dusttype .eq. 0)  filestem ='Drude Approximation'
+      if (dusttype .eq. 1)  filestem ='/inputs/WD01_silicate_D03upd.dat'
+      if (dusttype .eq. 2)  filestem ='/inputs/WD01_graphite_D03upd.dat'
+      if (dusttype .eq. 3)  filestem ='/inputs/ZDA04_silicate.dat'
+      if (dusttype .eq. 4)  filestem ='/inputs/ZDA04_amorphcar.dat'
+      if (dusttype .eq. 5)  filestem ='/inputs/ZDA04_graphite.dat'
+      if (dusttype .eq. 6)  filestem ='/inputs/ZDA04_refract.dat'
+      if (dusttype .eq. 7)  filestem ='/inputs/ZDA04_CGS.dat' ! composite
+      if (dusttype .eq. 8)  filestem ='/inputs/ZDA04_CGF.dat' ! composite
+      if (dusttype .eq. 9)  filestem ='/inputs/ZDA04_CGB.dat' ! composite
+      if (dusttype .eq. 10) filestem ='/inputs/ZDA04_CAS.dat' ! composite
+      if (dusttype .eq. 11) filestem ='/inputs/ZDA04_CAF.dat' ! composite
+      if (dusttype .eq. 12) filestem ='/inputs/ZDA04_CAB.dat' ! composite
+      if (dusttype .eq. 13) filestem ='/inputs/ZDA04_CNS.dat' ! composite
+      if (dusttype .eq. 14) filestem ='/inputs/ZDA04_CNF.dat' ! composite
+      if (dusttype .eq. 15) filestem ='/inputs/ZDA04_CNB.dat' ! composite
 
       if (dusttype .eq. 100)
      $     filestem = '/inputs/vacuum.dat'

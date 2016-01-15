@@ -106,7 +106,11 @@ double ZDA_graindist(struct DUSTMODEL *dm, double a) { /*  a */
    return result;
 }
 
-double WD_graindist(struct DUSTMODEL *dm, double a) { /* a*/
+double WD_graindist(struct DUSTMODEL *dm, double a) {
+  /* Input: a (in units of cm) 
+     Output: (1/nH) dn_gr/da, where n_gr(a) is the number density of 
+             grains with radius < a and n_H is the H nucleus number density 
+             units of cm^-1 */
 
   double alphagarr[] = 
     {-2.25,-2.17,-2.04,-1.91,-1.84,-1.72,-1.54,-2.26,-2.16,-2.01,
@@ -155,17 +159,17 @@ double WD_graindist(struct DUSTMODEL *dm, double a) { /* a*/
       {0.,1.,2.,3.,4.,5.,6.,0.,1.,2.,3.,4.,0.,1.,2.,3.,0.,1.,2.,3.,4.,
        0.,1.,2.,3.,0.0,1.0,2.0,0.0,0.5,1.0,0.0};
 
-    double alphag = alphagarr[dm->WDtype];
-    double betag  = betagarr[dm->WDtype];
-    double atg    = atgarr[dm->WDtype]*1.e-4;
-    double acg    = acgarr[dm->WDtype]*1.e-4;
-    double cg     = cgarr[dm->WDtype];
-    double alphas = alphasarr[dm->WDtype];
-    double betas  = betasarr[dm->WDtype];
-    double ats    = atsarr[dm->WDtype]*1.e-4;
+    double alphag = alphagarr[dm->WDtype/2];
+    double betag  = betagarr[dm->WDtype/2];
+    double atg    = atgarr[dm->WDtype/2]*1.e-4; /* convert to cm */
+    double acg    = acgarr[dm->WDtype/2]*1.e-4; /* convert to cm */
+    double cg     = cgarr[dm->WDtype/2];
+    double alphas = alphasarr[dm->WDtype/2];
+    double betas  = betasarr[dm->WDtype/2];
+    double ats    = atsarr[dm->WDtype/2]*1.e-4; /* convert to cm */
     double acs    = 1.e-5;
-    double cs     = csarr[dm->WDtype];
-    double bc5    = bc5arr[dm->WDtype];
+    double cs     = csarr[dm->WDtype/2];
+    double bc5    = bc5arr[dm->WDtype/2];
     double dnda;
 
     /* Calculate sizes */
@@ -177,7 +181,7 @@ double WD_graindist(struct DUSTMODEL *dm, double a) { /* a*/
       } else { 
 	dnda=dnda/(1.-betas*a/ats);
       }
-      if (a > ats) dnda=dnda*exp( pow((ats-a)/acs,3));
+      if (a > ats) dnda=dnda*exp( pow((ats-a)/acs,3.));
     } else { /* Graphite */
       dnda=(cg/a)*pow(a/atg,alphag);
       if (betag >= 0.) {
@@ -185,17 +189,18 @@ double WD_graindist(struct DUSTMODEL *dm, double a) { /* a*/
       } else {
 	dnda=dnda/(1.-betag*a/atg);
       }
-      if (a > atg) dnda=dnda*exp( pow((atg-a)/acg,3));
-    }
+      if (a > atg) dnda=dnda*exp( pow((atg-a)/acg,3.));
 
-    double a01=3.5e-8;
-    double a02=3.e-7;
-    double sig=0.4;
-    double b1=2.0496e-7;
-    double b2=9.6005e-11;
-    double dndavsg= (b1/a) * exp(-0.5* pow(log(a/a01)/sig,2) )+
-      (b2/a)*exp(-0.5* pow(log(a/a02)/sig,2));
-    if (dndavsg >= 0.0001*dnda) dnda=dnda+bc5*dndavsg;
+      /* Add in PAHs if they are more than 1e-4 of the total. */
+      double a01=3.5e-8;
+      double a02=3.e-7;
+      double sig=0.4;
+      double b1=2.0496e-7;
+      double b2=9.6005e-11;
+      double dndavsg= (b1/a) * exp(-0.5* pow(log(a/a01)/sig,2) )+
+	(b2/a)*exp(-0.5* pow(log(a/a02)/sig,2));
+      if (dndavsg >= 0.0001*dnda) dnda=dnda+bc5*dndavsg;
+    }
 
     return dnda;
 }
