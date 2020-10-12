@@ -1,4 +1,4 @@
-XSCAT 1.0.0 
+XSCAT 1.0.1 
 Author: Randall Smith
 Email: rsmith@cfa.harvard.edu
 
@@ -154,3 +154,12 @@ NOT necessarily the total column density, which could include
 absorption near the source that does not contribute to scattering
 losses.  See Smith, Valencic & Corrales (2015) for all of the
 details. 
+
+
+Update History
+
+XSCAT 1.0.1 12-Oct-2020
+Author: Adam Foster
+Email: afoster@cfa.harvard.edu
+Include paths changed to reflect changes with XSPEC. Otherwise code is unchanged.
+
