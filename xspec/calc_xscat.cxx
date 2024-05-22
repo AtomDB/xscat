@@ -84,7 +84,7 @@ void calc_xscat(const RealArray& energyArray,
       xl_wt*rl_wt*xscat_dat->sigma[iE + xl*Nrext + rl] +
       xl_wt*rh_wt*xscat_dat->sigma[iE + xl*Nrext + rh] + 
       xh_wt*rl_wt*xscat_dat->sigma[iE + xh*Nrext + rl] +
-      xh_wt*rl_wt*xscat_dat->sigma[iE + xh*Nrext + rh];
+      xh_wt*rh_wt*xscat_dat->sigma[iE + xh*Nrext + rh];
     /* printf("Sval: %e %e %e\n", Eval[ii], Sval[ii], 
        xscat_dat->sigma[iE + xl*Nrext + rh]); */
   }
